@@ -3,12 +3,11 @@
 
 # easy_data_storage
 
-`easy_data_storage` is a Flutter package that provides simple implementations for data storage using Hive, SQLite, and SharedPreferences. It is designed for storing single entities and lists of entities with ease and efficiency.
+`easy_data_storage` is a Flutter package that provides simple implementations for data storage using Hive, and SharedPreferences. It is designed for storing single entities and lists of entities with ease and efficiency.
 
 ## Features
 
 - **HiVe Integration**: Provides a lightweight, high-performance NoSQL database solution for storing entities.
-- **SQLite Support**: Implements traditional SQL database capabilities for more complex data management.
 - **SharedPreferences**: Facilitates the storage of simple key-value pairs for lightweight data storage needs.
 - **Entity Storage**: Supports storing and retrieving both single entities and lists of entities.
 
@@ -61,29 +60,6 @@ await hiVeStorage.saveEntityList('users', [User('Bob', 25), User('Carol', 28)]);
 
 // Retrieve a list of entities
 List<User>? users = await hiVeStorage.getEntityList<User>('users');
-users?.forEach((user) => print(user.name));  // Outputs: Bob, Carol
-```
-
-### SQLite Example
-
-```dart
-import 'package:easy_data_storage/easy_data_storage.dart';
-
-// Initialize SQLite storage
-final sqliteStorage = SQLiteStorage();
-
-// Save a single entity
-await sqliteStorage.saveEntity('user1', User('Alice', 30));
-
-// Retrieve a single entity
-User? user = await sqliteStorage.getEntity<User>('user1');
-print(user?.name);  // Outputs: Alice
-
-// Save a list of entities
-await sqliteStorage.saveEntityList('users', [User('Bob', 25), User('Carol', 28)]);
-
-// Retrieve a list of entities
-List<User>? users = await sqliteStorage.getEntityList<User>('users');
 users?.forEach((user) => print(user.name));  // Outputs: Bob, Carol
 ```
 
