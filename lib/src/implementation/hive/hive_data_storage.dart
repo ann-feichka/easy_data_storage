@@ -44,13 +44,16 @@ class HiveDataStorage<Entity> implements DataStorage<Entity> {
   Future<Entity?> get() async {
     final value = hiveBox.get(key);
 
-    final entity = fromJson(
-      json.decode(
-        json.encode(value),
-      ) as Map<String, dynamic>,
-    );
+    if (value != null) {
+      final entity = fromJson(
+        json.decode(
+          json.encode(value),
+        ) as Map<String, dynamic>,
+      );
+      return entity;
+    }
 
-    return entity;
+    return null;
   }
 
   @override

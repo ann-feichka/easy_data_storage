@@ -46,9 +46,9 @@ class HiveListDataStorage<Entity> implements ListDataStorage<Entity> {
 
     final validMapList = values
         .map(
-          (projectsJson) => fromJson(
+          (itemsJson) => fromJson(
             json.decode(
-              json.encode(projectsJson),
+              json.encode(itemsJson),
             ) as Map<String, dynamic>,
           ),
         )
@@ -61,13 +61,17 @@ class HiveListDataStorage<Entity> implements ListDataStorage<Entity> {
   Future<Entity?> getByKey(String key) async {
     final value = hiveBox.get(key);
 
-    final entity = fromJson(
-      json.decode(
-        json.encode(value),
-      ) as Map<String, dynamic>,
-    );
+    if (value != null) {
+      final entity = fromJson(
+        json.decode(
+          json.encode(value),
+        ) as Map<String, dynamic>,
+      );
 
-    return entity;
+      return entity;
+    }
+
+    return null;
   }
 
   @override

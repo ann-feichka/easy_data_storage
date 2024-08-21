@@ -14,10 +14,15 @@ dependencies:
   hive: ^2.2.3
   shared_preferences: ^2.2.3
 
+  #this package extends the native Iterable type with all of the LINQ methods that do not exist in native Dart
+  darq: ^2.0.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^3.0.0
+  mockito: ^5.4.4
+  build_runner: ^2.4.9
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
