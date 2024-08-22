@@ -1,33 +1,4 @@
 
----
-
-# easy_data_storage
-
-`easy_data_storage` is a Flutter package that provides simple implementations for data storage using Hive, and SharedPreferences. It is designed for storing single entities and lists of entities with ease and efficiency.
-
-## Features
-
-- **HiVe Integration**: Provides a lightweight, high-performance NoSQL database solution for storing entities.
-- **SharedPreferences**: Facilitates the storage of simple key-value pairs for lightweight data storage needs.
-- **Entity Storage**: Supports storing and retrieving both single entities and lists of entities.
-
-## Getting started
-
-To get started with `easy_data_storage`, follow these steps:
-
-1. **Add Dependency**:
-   Add `easy_data_storage` to your `pubspec.yaml` file:
-   ```yaml
-   dependencies:
-     easy_data_storage: ^1.0.0
-   ```
-
-2. **Install Packages**:
-   Run `flutter pub get` to install the new dependency.
-
-3. **Initialization**:
-   Initialize the storage components based on your requirements. You can choose between HiVe or SharedPreferences.
-
 ## Usage
 
 Here are some basic examples of how to use the `easy_data_storage` package:
@@ -148,10 +119,3 @@ void main() async {
 }
 
 ```
-
-## Additional information
-
-- **Reporting Issues**: For reporting bugs or issues, please use the [issue tracker](https://github.com/ann-feichka/easy_data_storage/issues).
-- **Support**: For questions or support, open an issue on GitHub or contact the maintainers via email.
-
----
