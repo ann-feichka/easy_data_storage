@@ -7,3 +7,5 @@ export 'src/implementation/hive/hive_list_data_storage.dart'
 
 export 'src/implementation/shared_preferences/shared_pref_data_storage.dart'
     show SharedPrefDataStorage;
+export 'src/implementation/shared_preferences/shared_pref_list_data_storage.dart'
+    show SharedPrefsListDataStorage;
