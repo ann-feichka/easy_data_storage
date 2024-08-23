@@ -1,4 +1,5 @@
 import 'package:easy_data_storage/easy_data_storage.dart';
+import 'package:easy_data_storage/src/implementation/shared_preferences/shared_pref_list_data_storage.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:mockito/annotations.dart';
@@ -58,5 +59,7 @@ void main() {
 
       expect(receivedItem == null, true);
     });
+
+    tearDown(() => testPrefs.clear());
   });
 }

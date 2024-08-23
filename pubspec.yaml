@@ -1,6 +1,6 @@
 name: easy_data_storage
 description: "A Flutter package that provides simple implementations for data storage using Hive, SQLite, and SharedPreferences."
-version: 0.0.3
+version: 0.0.3+1
 repository: https://github.com/ann-feichka/easy_data_storage
 
 environment:

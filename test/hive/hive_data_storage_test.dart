@@ -117,5 +117,25 @@ void main() {
 
       expect(actualItem == null, true);
     });
+
+    test('Success put entity', () async {
+      const key = '5';
+
+      final item = TestModel(
+        name: 'name',
+        id: 5,
+        isTest: true,
+      );
+
+      await testStorage.put(item);
+
+      when(testBox.get(key)).thenReturn(item.toJson());
+
+      final actualItem = await testStorage.getByKey(key);
+
+      expect(actualItem != null, true);
+
+      expect(actualItem?.id, 5);
+    });
   });
 }

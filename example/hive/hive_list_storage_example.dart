@@ -1,6 +1,5 @@
-import 'dart:convert';
+import 'package:easy_data_storage/easy_data_storage.dart';
 import 'package:hive/hive.dart';
-import 'package:your_project/data_storage.dart';
 
 /// Define your entity class (for example, using freezed)
 class Item {
@@ -27,7 +26,7 @@ class Item {
 /// Example usage of the HiveListDataStorage with the Item entity
 void main() async {
   // Initialize Hive and open a box
-  await Hive.initFlutter();
+  Hive.init('path');
   final itemsBox = await Hive.openBox<Map<String, dynamic>>('itemsBox');
 
   // Create an instance of HiveListDataStorage for Item entity

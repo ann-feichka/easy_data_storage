@@ -1,4 +1,4 @@
-library data_storage;
+library easy_data_storage;
 
 import 'dart:convert';
 
