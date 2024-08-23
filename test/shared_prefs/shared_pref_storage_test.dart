@@ -1,5 +1,4 @@
 import 'package:easy_data_storage/easy_data_storage.dart';
-import 'package:easy_data_storage/src/implementation/shared_preferences/shared_pref_list_data_storage.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:mockito/annotations.dart';
@@ -61,5 +60,88 @@ void main() {
     });
 
     tearDown(() => testPrefs.clear());
+  });
+
+  group('Shared prefs list data storage', () {
+    final testPrefs = MockSharedPreferences();
+
+    const prefsKey = 'test';
+
+    final testStorage = SharedPrefsListDataStorage<TestModel>(
+        sharedPreferences: testPrefs,
+        fromJson: TestModel.fromJson,
+        prefsKey: prefsKey,
+        toJson: (entity) => entity.toJson(),
+        getKeyFromEntity: (entity) => entity.id.toString());
+
+    final items = List.generate(
+        5,
+        (index) => TestModel(
+              name: 'name$index',
+              id: index,
+              isTest: true,
+            ));
+
+    test('Success save list of entities', () async {
+      await testStorage.putAll(items);
+
+      when(testPrefs.get(prefsKey))
+          .thenReturn(items.map((e) => e.toJson()).toList());
+
+      final receivedItems = await testStorage.getAll();
+
+      expect(receivedItems.length, items.length);
+
+      final actualFirstItem = receivedItems.first;
+
+      expect(actualFirstItem.name, items.first.name);
+    });
+
+    test('Success get an entity by key', () async {
+      final testItem = items.last;
+
+      final key = testItem.id.toString();
+
+      when(testPrefs.get(prefsKey))
+          .thenReturn(items.map((e) => e.toJson()).toList());
+
+      final receivedItem = await testStorage.getByKey(key);
+
+      expect(receivedItem != null, true);
+
+      expect(receivedItem!.name, testItem.name);
+      expect(receivedItem.id, testItem.id);
+    });
+
+    test('Success get a non-existent entity by key', () async {
+      const key = 'testKey';
+
+      when(testPrefs.get(prefsKey))
+          .thenReturn(items.map((e) => e.toJson()).toList());
+
+      final receivedItem = await testStorage.getByKey(key);
+
+      expect(receivedItem == null, true);
+    });
+
+    test('Success put one entity ', () async {
+      const key = '5';
+
+      final item = TestModel(
+        name: 'name',
+        id: 5,
+        isTest: true,
+      );
+
+      await testStorage.put(item);
+
+      when(testPrefs.get(prefsKey)).thenReturn([item.toJson()]);
+
+      final actualItem = await testStorage.getByKey(key);
+
+      expect(actualItem != null, true);
+
+      expect(actualItem?.id, 5);
+    });
   });
 }
